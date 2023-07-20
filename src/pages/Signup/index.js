@@ -14,6 +14,15 @@ const Signup = () => {
 
   const { signup } = useAuth();
 
+  const handleEmailConf = (e) => {
+    setEmailConf(e.target.value);
+    setError("");
+    if (email !== emailConf) {
+      setError("Os e-mails devem ser iguais");
+      return;
+    }
+  };
+
   const handleSignup = () => {
     if (!email | !emailConf | !senha) {
       setError("Preencha todos os campos");
@@ -48,7 +57,8 @@ const Signup = () => {
           type="email"
           placeholder="Confirme seu E-mail"
           value={emailConf}
-          onChange={(e) => [setEmailConf(e.target.value), setError("")]}
+          onChange={handleEmailConf}
+          // onChange={(e) => [setEmailConf(e.target.value), setError("")]}
         />
         <Input
           type="password"
